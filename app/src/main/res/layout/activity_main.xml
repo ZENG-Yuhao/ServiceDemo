@@ -50,24 +50,11 @@
             android:textAllCaps="false"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btn_simple_bound"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_bind_simple"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bind Service"
-            android:textAllCaps="false"/>
-
-        <Button
-            android:id="@+id/btn_unbind_simple"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Unbind Service"
-            android:textAllCaps="false"/>
-    </LinearLayout>
+        android:layout_gravity="center"
+        android:text="Simple BoundService"
+        android:textAllCaps="false"/>
 </LinearLayout>

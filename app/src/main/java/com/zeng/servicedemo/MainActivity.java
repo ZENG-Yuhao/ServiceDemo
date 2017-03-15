@@ -50,6 +50,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        Button btn_simple_bound = (Button) findViewById(R.id.btn_simple_bound);
+        btn_simple_bound.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SimpleBoundServiceActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
