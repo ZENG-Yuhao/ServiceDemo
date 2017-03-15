@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final Intent simpleService = new Intent(MainActivity.this, SimpleStartedService.class);
-
         Button btn_start_simple = (Button) findViewById(R.id.btn_start_simple);
         btn_start_simple.setOnClickListener(new OnClickListener() {
             @Override
@@ -34,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         final Intent intentService = new Intent(MainActivity.this, SimpleIntentService.class);
-
         Button btn_start_intent = (Button) findViewById(R.id.btn_start_intent);
         btn_start_intent.setOnClickListener(new OnClickListener() {
             @Override
@@ -51,5 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 stopService(intentService);
             }
         });
+
+
     }
 }

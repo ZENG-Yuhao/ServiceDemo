@@ -26,6 +26,11 @@
             android:name=".SimpleIntentService"
             android:exported="false">
         </service>
+        <service
+            android:name=".SimpleBoundService"
+            android:enabled="true"
+            android:exported="false">
+        </service>
     </application>
 
 </manifest>
