@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import com.zeng.servicedemo.IPC.MessengerLocalClientActivity;
+
 public class MainActivity extends AppCompatActivity {
     private int count = 0;
 
@@ -58,5 +60,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button btn_messenger = (Button) findViewById(R.id.btn_messenger);
+        btn_messenger.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MessengerLocalClientActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

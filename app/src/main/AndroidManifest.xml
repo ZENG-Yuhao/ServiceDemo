@@ -34,6 +34,18 @@
 
         <activity android:name=".SimpleBoundServiceActivity">
         </activity>
+
+        <service
+            android:name=".IPC.MessengerService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.zeng.servicedemo.IPC.MessengerService"/>
+            </intent-filter>
+        </service>
+
+        <activity android:name=".IPC.MessengerLocalClientActivity">
+        </activity>
     </application>
 
 </manifest>

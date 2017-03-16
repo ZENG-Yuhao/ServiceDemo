@@ -57,4 +57,12 @@
         android:layout_gravity="center"
         android:text="Simple BoundService"
         android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_messenger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Messenger Service"
+        android:textAllCaps="false"/>
 </LinearLayout>
