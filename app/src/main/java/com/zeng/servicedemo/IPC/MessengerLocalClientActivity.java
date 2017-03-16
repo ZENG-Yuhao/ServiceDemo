@@ -16,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zeng.servicedemo.R;
 
@@ -23,8 +24,6 @@ public class MessengerLocalClientActivity extends AppCompatActivity {
     public static final int MSG_UPLOAD = 1;
     public static final int MSG_DOWNLOAD = 2;
     public static final int MSG_REPLY = 3;
-
-    public static final String FLAG_DATA = "data";
 
     private Button btn_upload, btn_download;
     private EditText input;
@@ -40,8 +39,8 @@ public class MessengerLocalClientActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == MSG_REPLY) {
-                if (msg.obj != null) {
-                    String data = (String) msg.obj;
+                if (msg.getData() != null) {
+                    String data = (String) msg.getData().get("content");
                     append(data + " downloaded.");
                     Log.d("ClientMessageHandler", "Data download --> " + data);
                 }
@@ -69,7 +68,9 @@ public class MessengerLocalClientActivity extends AppCompatActivity {
                 String strIn = input.getText().toString();
                 if (isServiceBound) {
                     Message msg = Message.obtain(null, MSG_UPLOAD, 0, 0);
-                    msg.obj = strIn;
+                    Bundle data = new Bundle();
+                    data.putString("content", strIn);
+                    msg.setData(data);
                     try {
                         mService.send(msg);
                     } catch (RemoteException e) {
@@ -114,12 +115,14 @@ public class MessengerLocalClientActivity extends AppCompatActivity {
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             mService = new Messenger(iBinder);
             isServiceBound = true;
+            Toast.makeText(MessengerLocalClientActivity.this, "Service bound.", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
             isServiceBound = false;
             mService = null;
+            Toast.makeText(MessengerLocalClientActivity.this, "Service unbound.", Toast.LENGTH_SHORT).show();
         }
     }
 }

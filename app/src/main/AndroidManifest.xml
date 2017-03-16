@@ -40,8 +40,9 @@
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.zeng.servicedemo.IPC.MessengerService"/>
+                <action android:name="com.zeng.servicedemo.ACTION_BIND"/>
             </intent-filter>
+
         </service>
 
         <activity android:name=".IPC.MessengerLocalClientActivity">

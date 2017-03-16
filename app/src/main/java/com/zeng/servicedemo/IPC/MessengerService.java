@@ -2,6 +2,7 @@ package com.zeng.servicedemo.IPC;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -16,8 +17,6 @@ public class MessengerService extends Service {
     public static final int MSG_DOWNLOAD = 2;
     public static final int MSG_REPLY = 3;
 
-    public static final String FLAG_DATA = "data";
-
     private final Stack<String> mStack = new Stack<>();
     private Messenger mMessenger = new Messenger(new ServerMessageHandler());
 
@@ -26,8 +25,8 @@ public class MessengerService extends Service {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_UPLOAD:
-                    if (msg.obj != null) {
-                        String data = (String) msg.obj;
+                    if (msg.getData() != null) {
+                        String data = (String) msg.getData().get("content");
                         upload(data);
                         Log.d("ServerMessageHandler", "Data upload --> " + data);
                     }
@@ -36,7 +35,10 @@ public class MessengerService extends Service {
                     if (msg.replyTo != null) {
                         Messenger client = msg.replyTo;
                         Message reply = Message.obtain(null, MSG_REPLY, 0, 0);
-                        reply.obj = download();
+                        // non parsable data cannot be transferred to remote client, a wrapper with Bundle is required.
+                        Bundle data = new Bundle();
+                        data.putString("content", download());
+                        reply.setData(data);
                         try {
                             client.send(reply);
                         } catch (RemoteException e) {
